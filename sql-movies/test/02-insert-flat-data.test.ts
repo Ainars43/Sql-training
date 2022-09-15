@@ -24,29 +24,44 @@ import { minutes } from "./utils";
 
 const insertActors = (actors: string[]) => {
   return (
-    `insert into actors (full_name) values` +
+    `INSERT INTO ${ACTORS} (full_name) VALUES` +
     actors.map(actor => `('${escape(actor)}')`).join(",")
   );
 };
 
 const insertKeywords = (keywords: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `INSERT INTO ${KEYWORDS} (keyword) VALUES` +
+    keywords.map(keyword => `('${escape(keyword)}')`)
+  );
 };
 
 const insertDirectors = (directors: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `INSERT INTO ${DIRECTORS} (full_name) VALUES` +
+    directors.map(director => `('${escape(director)}')`)
+  );
 };
 
 const insertGenres = (genres: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `INSERT INTO ${GENRES} (genre) VALUES` +
+    genres.map(genre => `('${escape(genre)}')`)
+  );
 };
 
 const insertProductionCompanies = (companies: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `INSERT INTO ${PRODUCTION_COMPANIES} (company_name) VALUES` +
+    companies.map(company => `('${escape(company)}')`)
+  );
 };
 
 const insertMovies = (movies: Movie[]) => {
-  throw new Error(`todo`);
+  return (
+    `INSERT INTO ${MOVIES} (imdb_id) VALUES` + 
+    movies.map(movie => `('${movie}')`)
+  );
 };
 
 describe("Insert Flat Data", () => {
