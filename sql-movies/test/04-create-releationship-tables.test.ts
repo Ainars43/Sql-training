@@ -4,21 +4,57 @@ import {
   MOVIE_KEYWORDS,
   MOVIE_ACTORS,
   MOVIE_DIRECTORS,
-  MOVIE_PRODUCTION_COMPANIES
+  MOVIE_PRODUCTION_COMPANIES,
+  MOVIES,
+  GENRES,
+  ACTORS,
+  DIRECTORS,
+  KEYWORDS,
+  PRODUCTION_COMPANIES
 } from "../src/table-names";
 import { Database } from "../src/database";
 import { tableInfo } from "../src/queries/table-info";
 import { minutes, Log } from "./utils";
 
-const CREATE_MOVIE_GENRES_TABLE = ``;
+const CREATE_MOVIE_GENRES_TABLE = `CREATE TABLE ${MOVIE_GENRES} (
+  movie_id integer NOT NULL,
+  genre_id integer NOT NULL,
+  Foreign key(movie_id) REFERENCES ${MOVIES}(id)
+  Foreign key(genre_id) REFERENCES ${GENRES}(id)
+  Primary key(movie_id, genre_id)  
+)`;
 
-const CREATE_MOVIE_ACTORS_TABLE = ``;
+const CREATE_MOVIE_ACTORS_TABLE = `CREATE TABLE ${MOVIE_ACTORS} (
+  movie_id integer NOT NULL,
+  actor_id integer NOT NULL,
+  Foreign key(movie_id) REFERENCES ${MOVIES}(id)
+  Foreign key(actor_id) REFERENCES ${ACTORS}(id)
+  Primary key(movie_id, actor_id)
+)`;
 
-const CREATE_MOVIE_DIRECTORS_TABLE = ``;
+const CREATE_MOVIE_DIRECTORS_TABLE = `CREATE TABLE ${MOVIE_DIRECTORS} (
+  movie_id integer NOT NULL,
+  director_id integer NOT NULL,
+  Foreign key(movie_id) REFERENCES ${MOVIES}(id)
+  Foreign key(director_id) REFERENCES ${DIRECTORS}(id)
+  Primary key(movie_id, director_id)  
+)`;
 
-const CREATE_MOVIE_KEYWORDS_TABLE = ``;
+const CREATE_MOVIE_KEYWORDS_TABLE = `CREATE TABLE ${MOVIE_KEYWORDS} (
+  movie_id integer NOT NULL,
+  keyword_id integer NOT NULL,
+  Foreign key(movie_id) REFERENCES ${MOVIES}(id)
+  Foreign key(keyword_id) REFERENCES ${KEYWORDS}(id)
+  Primary key(movie_id, keyword_id)  
+)`;
 
-const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = ``;
+const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = `CREATE TABLE ${MOVIE_PRODUCTION_COMPANIES} (
+  movie_id integer NOT NULL,
+  company_id integer NOT NULL,
+  Foreign key(movie_id) REFERENCES ${MOVIES}(id)
+  Foreign key(company_id) REFERENCES ${PRODUCTION_COMPANIES}(id)
+  Primary key(movie_id, company_id)  
+)`;
 
 describe("Insert Combined Data", () => {
   let db: Database;
